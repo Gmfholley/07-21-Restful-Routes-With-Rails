@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   include UsersHelper
   
   def login
-    session[:id] = nil
+    session.clear
     @user = User.new
   end
   
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
   
   def create_user
- #   Rails.logger.debug params.inspect
+  #  Rails.logger.debug params.inspect
     @user = User.new(params["users"].permit(:email, :password))
     @user.convert_password
     if @user.valid?
@@ -27,26 +27,19 @@ class UsersController < ApplicationController
       render "create_form"
     end
   end
-  # post "/new_user" do
-#     params["users"]["password"] = BCrypt::Password.create(params["users"]["password"])
-#
-#     if @user.valid?
-#       @user.save
-#       session[:id] = @user.id
-#       redirect "/users/#{@user.id}"
-#     else
-#       erb :"users/create_user"
-#     end
-#   end
- #
- #  post "/users/login" do
- #    @user = User.where("email" => params["users"]["email"]).first
- #    if !@user.nil? && @user.valid_password?(params["users"]["password"])
- #      session[:id] = @user.id
- #      redirect "/users/#{@user.id}"
- #    else
- #      erb :"users/login"
- #    end
+  
+  def login_user
+    find_user_by_email
+    if !@user.nil? && @user.valid_password?(params["users"]["password"])
+      set_session
+      redirect_to "/users/#{@user.id}"
+    else
+      render "login"
+    end
+  end
+
+  #post "/users/login" do
+
  #  end
  #
  #  get "/delete_profile" do

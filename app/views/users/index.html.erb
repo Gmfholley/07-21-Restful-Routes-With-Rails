@@ -1,3 +1,5 @@
+<%= @user.inspect %>
+
 <ul><% @users.each do |user| %>
   <li><%= user.email %>  <% if user.id == @user.id %><a href="/delete_profile">Delete</a>  <a href="/edit_profile">Edit</a><% end %></li>
 <% end %></ul>

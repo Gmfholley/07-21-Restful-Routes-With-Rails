@@ -58,5 +58,6 @@ Rails.application.routes.draw do
   get "/users" => 'users#index'
   get "/new_user" => 'users#create_form'
   post "/new_user" => 'users#create_user'
+  post "/users/login" => 'users#login_user'
   get "/users/:id" => 'users#profile'
 end
