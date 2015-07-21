@@ -1,0 +1,12 @@
+<ul>
+  <% @post.errors.full_messages.each do |error| %>
+    <li><%= error %></li>
+  <% end %>
+</ul>
+<%= form_tag("/edit_story/#{@post.id}", method: "post") do %>
+  <input type="hidden" name="posts[id]" value="<%= @post.id %>"></input>
+  <input type="hidden" name="_method" value="put"></input>
+  <input type="text" name="posts[name]" placeholder="Type in the story's name" value="<%= @post.name %>"></input>
+  <input type="hidden" name="posts[user_id]" value ="<%= @post.user_id%>"></input>
+  <input type="submit"></input>
+<% end %>

@@ -69,5 +69,6 @@ Rails.application.routes.draw do
   get "/users/:id/posts" => 'posts#index'
   get "/new_post" => 'posts#new_post_form'
   post "/new_post" => 'posts#new_post'
-  
+  get "/delete_post/:id" => 'posts#delete_post_form'
+  delete "/delete_post/:id" => 'posts#delete_post'
 end
