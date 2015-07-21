@@ -6,10 +6,19 @@ class PostsController < ApplicationController
     @posts = Post.where("user_id" => @user.id)
   end
   
-  def new_story
+  def new_post_form
     current_user
     @post = Post.new
-    erb :"stories/create_story"
+  end
+  
+  def new_post
+    current_user
+    @post = Post.new(params["posts"].permit(:name, :user_id))
+    if @post.save
+      redirect_to "/users/#{@user.id}/posts"
+    else
+      render "new_post_form"
+    end
   end
   
   

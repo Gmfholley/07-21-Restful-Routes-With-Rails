@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
   
-  include UsersHelper
-  
   def login
     session.clear
     @user = User.new

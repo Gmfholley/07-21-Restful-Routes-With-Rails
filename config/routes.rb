@@ -67,5 +67,7 @@ Rails.application.routes.draw do
   
   
   get "/users/:id/posts" => 'posts#index'
+  get "/new_post" => 'posts#new_post_form'
+  post "/new_post" => 'posts#new_post'
   
 end
