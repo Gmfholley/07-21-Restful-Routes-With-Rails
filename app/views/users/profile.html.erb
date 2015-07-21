@@ -1,6 +1,7 @@
 
-<%= session[:id].inspect %>
-
-<p>Welcome, <%= @user.email %>!</p>
-
+<% if session[:id] == @user.id %>
+  <p>Welcome, <%= @user.email %>!</p>
+<% else %>
+  <p>Welcome to <%= @user.email %>'s page!</p>
+<% end %>
 <p>We plan to have more for you later.</p>
