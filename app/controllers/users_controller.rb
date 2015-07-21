@@ -17,7 +17,8 @@ class UsersController < ApplicationController
   end
   
   def create_user
-    @user = User.new(params["users"])
+    Rails.logger.debug params.inspect
+    @user = User.new(params["users"].permit(:email, :password))
     @user.convert_password
     if @user.valid?
       @user.save

@@ -5,8 +5,8 @@ class User < ActiveRecord::Base
   
   #TODO - create a callback to run this automatically at validation
   
-  def convert_password(password)
-    self.password = BCrypt::Password.create(password)
+  def convert_password
+    self.password = BCrypt::Password.create(self.password)
   end
   
   def valid_password?(password)
