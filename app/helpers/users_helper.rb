@@ -24,11 +24,11 @@ module UsersHelper
   end
   
   def session_id
-    cookies[:id]
+    session[:id]
   end
   
   def clear_session
-    cookies[:id] = nil
+    session[:id] = nil
   end
   
   def save_user_and_set_session
@@ -37,7 +37,8 @@ module UsersHelper
   end
   
   def set_session
-    cookies[:id] = @user.id
+    session[:id] = @user.id
+    Rails.logger.debug cookies
   end
   
   def find_user_by_email

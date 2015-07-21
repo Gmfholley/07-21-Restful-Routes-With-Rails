@@ -1,13 +1,13 @@
 <ul>
-  <% @user.errors.full_messages.each do |error| %>
-    <li><%= error %></li>
+  <% @user.errors.messages.each do |error| %>
+    <li><%= error[1] %></li>
   <% end %>
 </ul>
 
-<form action="/users/login" method="post">
+
+<%= form_tag('/users/login') do %>
   <input type="text" name="users[email]" placeholder="Type in your email." value="<%=@user.email%>"></input>
   <input type="password" name="users[password]" placeholder="Type in your password."></input>
   <input type="submit"></input>
-</form>
-
+<% end %>
 <p><a href="/new_user">New User?</a></p>
