@@ -38,7 +38,6 @@ module UsersHelper
   
   def set_session
     session[:id] = @user.id
-    Rails.logger.debug cookies
   end
   
   def find_user_by_email

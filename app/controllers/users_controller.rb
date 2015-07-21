@@ -38,9 +38,11 @@ class UsersController < ApplicationController
     end
   end
 
-  #post "/users/login" do
-
- #  end
+  def delete_profile
+    current_user
+  end
+  
+  
  #
  #  get "/delete_profile" do
  #    current_user
