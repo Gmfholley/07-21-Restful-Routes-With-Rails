@@ -54,6 +54,8 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
   
+  
+  # Routes for Users
   get "/" => 'users#login' 
   get "/users" => 'users#index'
   get "/new_user" => 'users#create_form'
@@ -62,10 +64,11 @@ Rails.application.routes.draw do
   get "/delete_profile" => 'users#delete_profile_form'
   delete "/delete_profile" => 'users#delete_profile'
   get "/edit_profile" => 'users#edit_profile_form'
-  put "/edit_profile" => 'users#edit_profile'
+  put "/edit_profile" => 'users#edit_profile' 
   get "/users/:id" => 'users#profile'
   
   
+  # Routes for posts
   get "/users/:id/posts" => 'posts#index'
   get "/new_post" => 'posts#new_post_form'
   post "/new_post" => 'posts#new_post'
