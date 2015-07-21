@@ -50,32 +50,22 @@ class UsersController < ApplicationController
       render delete_profile_form
     end
   end
- #
- #  delete "/users" do
- #    current_user
- #    if @user.delete(params["id"])
- #      redirect "/"
- #    else
- #      erb :"users/delete_user"
- #    end
- #  end
- #
- #  get "/edit_profile" do
- #    current_user
- #    erb :"users/edit_user"
- #  end
- #
- #  put "/users" do
- #    current_user
- #    if @user.update(params["users"])
- #      redirect "/users/#{@user.id}"
- #    else
- #      erb :"users/edit_user"
- #    end
- #  end
- #
- def profile
-   @user = User.find(params["id"])
- end
+  
+  def edit_profile_form
+    current_user
+  end
+  
+  def edit_profile
+    current_user
+    if @user.update(params["users"].permit(:email, :password))
+      redirect_to "/users/#{@user.id}"
+    else
+      render "edit_profile_form"
+    end
+  end
+  
+  def profile
+    @user = User.find(params["id"])
+  end
 
 end
