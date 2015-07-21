@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   validates :password, presence: true
   has_many :posts
   
+  has_and_belongs_to_many :posts
+  
   #TODO - create a callback to run this automatically at validation
   
   def convert_password
