@@ -17,4 +17,9 @@ module UsersHelper
     end
   end
   
+  def save_user_and_set_session
+    @user.save
+    session[:id] = @user.id
+  end
+  
 end

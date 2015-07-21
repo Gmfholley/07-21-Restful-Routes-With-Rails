@@ -17,17 +17,15 @@ class UsersController < ApplicationController
   end
   
   def create_user
-    Rails.logger.debug params.inspect
+ #   Rails.logger.debug params.inspect
     @user = User.new(params["users"].permit(:email, :password))
     @user.convert_password
     if @user.valid?
-      @user.save
-      session[:id] = @user.id
+      save_user_and_set_session
       redirect_to "/users/#{@user.id}"
     else
       render "create_form"
     end
-    
   end
   # post "/new_user" do
 #     params["users"]["password"] = BCrypt::Password.create(params["users"]["password"])
