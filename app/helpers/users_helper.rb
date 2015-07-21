@@ -6,5 +6,6 @@ module UsersHelper
     else
       session.clear
       redirect "/"
-    end  
+    end 
+  end 
 end

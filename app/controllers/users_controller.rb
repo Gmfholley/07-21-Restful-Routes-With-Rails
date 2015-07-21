@@ -4,10 +4,10 @@ class UsersController < ApplicationController
     @user = User.new
   end
   
-  get "/" do
-
-    erb :"users/login"
-  end
+  # get "/" do
+  #
+  #   erb :"users/login"
+  # end
 
   # get "/users" do
  #    if session["id"]
