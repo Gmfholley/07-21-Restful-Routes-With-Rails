@@ -12,4 +12,7 @@
 
 <% if @user.id == session[:id] %>
   <a href="/new_post">Add a new story?</a>
+  <a href="/profile">My Profile</a>
+<% else %>
+  <a href="<%= "/users/#{@user.id}" %>"><%= @user.email %>'s Profile</a>
 <% end %>

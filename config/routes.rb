@@ -66,7 +66,7 @@ Rails.application.routes.draw do
   get "/edit_profile" => 'users#edit_profile_form'
   put "/edit_profile" => 'users#edit_profile' 
   get "/users/:id" => 'users#profile'
-  
+  get "/profile" => 'users#my_profile' 
   
   # Routes for posts
   get "/users/:id/posts" => 'posts#index'

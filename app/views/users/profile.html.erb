@@ -6,4 +6,8 @@
 <% end %>
 <p>We plan to have more for you later.</p>
 
-<a href="<%= "/users/#{@user.id}/posts" %>">Go to <%= @user.email %>'s posts</a>
+<% if session[:id] == @user.id %>
+  <a href="<%= "/users/#{@user.id}/posts" %>">Go to My Posts</a>
+<% else %>
+  <a href="<%= "/users/#{@user.id}/posts" %>">Go to <%= @user.email %>'s posts</a>
+<% end %>

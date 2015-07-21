@@ -66,5 +66,10 @@ class UsersController < ApplicationController
   def profile
     @user = User.find(params["id"])
   end
+  
+  def my_profile
+    @user = User.find(session[:id])
+    render "profile"
+  end
 
 end
