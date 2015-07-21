@@ -45,48 +45,38 @@ class PostsController < ApplicationController
     render "index"    
   end
   
-  def edit_story_form
+  def edit_post_form
     current_user
     @post = Post.find(params["id"])
     if post_belongs_to_user?
-      render "edit_story_form"
+      render "edit_post_form"
     else
       redirect_to "/users/#{@user.id}/posts"
     end
   end
   
-  def edit_story
+  def edit_post
     current_user
     @post = Post.find(params["posts"]["id"])
     if post_belongs_to_user?
-      if @post.update(params["posts"])
-        redirect_to "users/#{@user.id}/posts/#{@post.id}"
+      if @post.update(params["posts"].permit(:name))
+        redirect_to "/users/#{@user.id}/posts"
       else
-        render "posts/edit_story"
+        render "edit_post_form"
       end
     else
       redirect_to "/users/#{@user.id}/posts"
     end
   end
-  #
-  # get "/edit_story/:id" do
-  #   current_user
-  #   @story = Story.find(params["id"])
-  #   if @user.id == @story.user_id
-  #     erb :"stories/edit_story"
-  #   else
-  #     redirect "/users/#{@user.id}/stories"
-  #   end
-  # end
-  #
-  # put "/edit_story/:id" do
-
-  # end
-  #
+  
+  def post
+    @user = User.find(params["user_id"])
+    @post = Post.find(params["id"])
+  end
+  
+    #
   # get "/users/:user_id/stories/:id" do
-  #   @user = User.find(params["user_id"])
-  #   @story = Story.find(params["id"])
-  #   erb :"stories/single_story"
+
   # end
   
 end

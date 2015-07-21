@@ -71,4 +71,7 @@ Rails.application.routes.draw do
   post "/new_post" => 'posts#new_post'
   get "/delete_post/:id" => 'posts#delete_post_form'
   delete "/delete_post/:id" => 'posts#delete_post'
+  get "/edit_post/:id" => 'posts#edit_post_form'
+  put "/edit_post/:id" => 'posts#edit_post'
+  
 end
