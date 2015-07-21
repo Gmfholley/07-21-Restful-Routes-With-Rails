@@ -21,22 +21,15 @@ class PostsController < ApplicationController
     end
   end
   
-  
-  
-  #
-  # get "/new_story" do
-
-  # end
-  #
-  # post "/new_story" do
-  #   current_user
-  #   @story = Story.new(params["stories"])
-  #   if @story.save
-  #     redirect "/users/#{@user.id}/stories/#{@story.id}"
-  #   else
-  #     erb :"stories/create_story"
-  #   end
-  # end
+  def delete_post
+    current_user
+    @post = Post.find(params["id"])
+    if post_belongs_to_user?
+      render "delete_post_form"
+    else
+      redirect_to "/users/#{@user.id}/posts"
+    end
+  end
   #
   # get "/delete_story/:id" do
   #   current_user
