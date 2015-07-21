@@ -6,16 +6,17 @@ class PostsController < ApplicationController
     @posts = Post.where("user_id" => @user.id)
   end
   
-  # get "/users/:id/stories" do
-  #   @user = User.find(params["id"])
-  #   erb :"stories/show"
-  # end
-  #
+  def new_story
+    current_user
+    @post = Post.new
+    erb :"stories/create_story"
+  end
+  
+  
+  
   #
   # get "/new_story" do
-  #   current_user
-  #   @story = Story.new
-  #   erb :"stories/create_story"
+
   # end
   #
   # post "/new_story" do
