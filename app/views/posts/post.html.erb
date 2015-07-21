@@ -1,0 +1,9 @@
+<p>Welcome, <%= @post.name %>!</p>
+
+<% if session[:id] == @post.user_id %>
+  <p>This is your story.</p>
+<% else %>
+  <p>This story belongs to <%= User.find(@post.user_id).email %>.</p>
+<% end %>
+
+<p>We plan to have more for you later.</p>
