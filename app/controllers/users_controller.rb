@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  
+  include UsersHelper
+  
   def login
     session[:id] = nil
     @user = User.new
@@ -8,23 +11,34 @@ class UsersController < ApplicationController
     set_user_if_available
     @users = User.all
   end
- #
- #  get "/new_user" do
- #    @user = User.new
- #    erb :"users/create_user"
- #  end
- #
- #  post "/new_user" do
- #    params["users"]["password"] = BCrypt::Password.create(params["users"]["password"])
- #    @user = User.new(params["users"])
- #    if @user.valid?
- #      @user.save
- #      session[:id] = @user.id
- #      redirect "/users/#{@user.id}"
- #    else
- #      erb :"users/create_user"
- #    end
- #  end
+  
+  def create_form
+    @user = User.new
+  end
+  
+  def create_user
+    @user = User.new(params["users"])
+    @user.convert_password
+    if @user.valid?
+      @user.save
+      session[:id] = @user.id
+      redirect "/users/#{@user.id}"
+    else
+      render "create_form"
+    end
+    
+  end
+  # post "/new_user" do
+#     params["users"]["password"] = BCrypt::Password.create(params["users"]["password"])
+#
+#     if @user.valid?
+#       @user.save
+#       session[:id] = @user.id
+#       redirect "/users/#{@user.id}"
+#     else
+#       erb :"users/create_user"
+#     end
+#   end
  #
  #  post "/users/login" do
  #    @user = User.where("email" => params["users"]["email"]).first
