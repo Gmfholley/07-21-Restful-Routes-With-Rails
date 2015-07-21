@@ -47,7 +47,7 @@ class PostsController < ApplicationController
   
   def edit_post_form
     current_user
-    @post = Post.find(params["id"])
+    @post = Post.find_by_id(params["id"])
     if post_belongs_to_user?
       render "edit_post_form"
     else
@@ -55,9 +55,11 @@ class PostsController < ApplicationController
     end
   end
   
+  #TODO - handle post not found errors
+  
   def edit_post
     current_user
-    @post = Post.find(params["posts"]["id"])
+    @post = Post.find_by_id(params["posts"]["id"])
     if post_belongs_to_user?
       if @post.update(params["posts"].permit(:name))
         redirect_to "/users/#{@user.id}/posts"
