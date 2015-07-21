@@ -4,8 +4,10 @@
   <h3><%= @user.email %>'s Posts</h3>
 <% end %>
 
+
+<p><%= @message %></p>
 <ul><% @posts.each do |story| %>
-  <li><%= story.name %>  <% if @user.id == session[:id] %> <a href="/delete_story/<%= story.id%>">Delete</a>  <a href="/edit_story/<%= story.id%>">Edit</a> <% end %></li>
+  <li><%= story.name %>  <% if @user.id == session[:id] %> <a href="/delete_post/<%= story.id%>">Delete</a>  <a href="/edit_post/<%= story.id%>">Edit</a> <% end %></li>
 <% end %></ul>
 
 <% if @user.id == session[:id] %>
