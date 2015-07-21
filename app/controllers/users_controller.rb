@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     if @user.valid?
       @user.save
       session[:id] = @user.id
-      redirect "/users/#{@user.id}"
+      redirect_to "/users/#{@user.id}"
     else
       render "create_form"
     end
@@ -79,8 +79,8 @@ class UsersController < ApplicationController
  #    end
  #  end
  #
- #  get "/users/:id" do
- #    @user = User.find(params["id"])
- #    erb :"users/single_user"
- #  end
+ def profile
+   @user = User.find(params["id"])
+ end
+
 end
