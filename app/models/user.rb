@@ -3,6 +3,11 @@ class User < ActiveRecord::Base
   validates :password, presence: true
   has_many :posts
   
+  #TODO - create a callback to run this automatically at validation
+  
+  def convert_password(password)
+    self.password = BCrypt::Password.create(password)
+  end
   
   def valid_password?(password)
     if !(BCrypt::Password.new(self.password) == password)
