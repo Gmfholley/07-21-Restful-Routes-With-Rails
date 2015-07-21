@@ -57,6 +57,7 @@ class UsersController < ApplicationController
   
   def edit_profile
     current_user
+    params["users"]["password"] = BCrypt::Password.create(params["users"]["password"])
     if @user.update(params["users"].permit(:email, :password))
       redirect_to "/users/#{@user.id}"
     else

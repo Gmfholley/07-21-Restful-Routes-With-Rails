@@ -11,11 +11,11 @@ module UsersHelper
       @user = User.find(session_id)
     else
       clear_session
-      redirect "/"
+      redirect_to "/"
     end 
   end 
   
-  def set_user_if_available
+  def set_user_if_available    
     if session_id
       @user = User.find(session_id)
     else
