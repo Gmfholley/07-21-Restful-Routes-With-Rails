@@ -59,6 +59,7 @@ Rails.application.routes.draw do
   get "/new_user" => 'users#create_form'
   post "/new_user" => 'users#create_user'
   post "/users/login" => 'users#login_user'
-  get "/delete_profile" => 'users#delete_profile'
+  get "/delete_profile" => 'users#delete_profile_form'
+  delete "/delete_profile" => 'users#delete_profile'
   get "/users/:id" => 'users#profile'
 end

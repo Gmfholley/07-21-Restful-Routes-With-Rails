@@ -38,16 +38,18 @@ class UsersController < ApplicationController
     end
   end
 
-  def delete_profile
+  def delete_profile_form
     current_user
   end
   
-  
- #
- #  get "/delete_profile" do
- #    current_user
- #    erb :"users/delete_user"
- #  end
+  def delete_profile
+    current_user
+    if @user.delete
+      redirect_to "/"
+    else
+      render delete_profile_form
+    end
+  end
  #
  #  delete "/users" do
  #    current_user
