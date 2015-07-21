@@ -8,4 +8,13 @@ module UsersHelper
       redirect "/"
     end 
   end 
+  
+  def set_user_if_available
+    if session["id"]
+      @user = User.find(session["id"])
+    else
+      @user = User.new
+    end
+  end
+  
 end

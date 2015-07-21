@@ -55,5 +55,6 @@ Rails.application.routes.draw do
   #   end
   
   get "/" => 'users#login' 
+  get "/users" => 'users#index'
   
 end

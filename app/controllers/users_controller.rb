@@ -4,19 +4,10 @@ class UsersController < ApplicationController
     @user = User.new
   end
   
-  # get "/" do
-  #
-  #   erb :"users/login"
-  # end
-
-  # get "/users" do
- #    if session["id"]
- #      @user = User.find(session["id"])
- #    else
- #      @user = User.new
- #    end
- #    erb :"users/show"
- #  end
+  def index
+    set_user_if_available
+    @users = User.all
+  end
  #
  #  get "/new_user" do
  #    @user = User.new
