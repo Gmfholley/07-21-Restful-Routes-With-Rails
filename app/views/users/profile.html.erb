@@ -5,3 +5,5 @@
   <p>Welcome to <%= @user.email %>'s page!</p>
 <% end %>
 <p>We plan to have more for you later.</p>
+
+<a href="<%= "/users/#{@user.id}/posts" %>">Go to <%= @user.email %>'s posts</a>
