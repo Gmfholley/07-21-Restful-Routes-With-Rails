@@ -7,7 +7,7 @@
 
 <p><%= @message %></p>
 <ul><% @posts.each do |story| %>
-  <li><a href="<%= "/users/#{@user.id}/posts/#{story.id}" %>"><%= story.name %></a>  <% if @user.id == session[:id] %> <a href="/delete_post/<%= story.id%>">Delete</a>  <a href="/edit_post/<%= story.id%>">Edit</a> <% end %></li>
+  <li><a href="<%= "/posts/#{story.id}" %>"><%= story.name %></a>  <% if @user.id == session[:id] %> <a href="/delete_post/<%= story.id%>">Delete</a>  <a href="/edit_post/<%= story.id%>">Edit</a> <% end %></li>
 <% end %></ul>
 
 <% if @user.id == session[:id] %>
