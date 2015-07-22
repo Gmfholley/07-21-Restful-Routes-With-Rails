@@ -16,8 +16,18 @@ function get_post_id(){
 }
 
 
+// returns the post_id
+//
+// returns an Integer
+function get_session_id(){
+  return get_content().getAttribute("data-session-id");
+}
+
+// returns the unvote Element
+//
+// Returns an Element
 function get_unvote_image(){
-  
+  return document.getElementById("unvote");
 }
 
 // returns the vote Element
@@ -25,6 +35,26 @@ function get_unvote_image(){
 // Returns an Element
 function get_vote_image(){
   return document.getElementById("vote");
+}
+
+function add_checkmark_img(){
+  var img = document.createElement("img");
+  img.src = "http://www.entypo.com/images/check.svg";
+  img.classList.add("vote__icon");
+  img.setAttribute("title", "click to unvote");
+  img.id = "unvote"
+  get_content().insertBefore(img, document.getElementsByClassName("vote__text")[0].nextSibling);
+  img.addEventListener("click", "unvote");
+}
+
+function add_vote_img(){
+  var img = document.createElement("img");
+  img.src = "http://www.entypo.com/images/check.svg";
+  img.classList.add("vote__icon");
+  img.setAttribute("title", "click to vote");
+  img.id = "unvote"
+  get_content().insertBefore(img, document.getElementsByClassName("vote__text")[0].nextSibling);
+  img.addEventListener("click", "vote");
 }
 
 function vote (){
@@ -38,13 +68,20 @@ function vote (){
   });
   
   request.addEventListener("load", function(){
-    
-    var img = document.createElement("img");
-    img.src = "http://www.entypo.com/images/check.svg";
-    img.classList.add("vote__icon");
-    img.setAttribute("title", "click to unvote");
-    img.id = "unvote"
-    get_content().insertBefore(img, document.getElementByClassName("vote__icon")[0].nextSibling);
+    var post = JSON.parse(this.response);
+    var includes = false;
+    for (i=0; i < post.users.length; i++) {
+      if (post.users[i].id == get_session_id()){
+        includes = true;
+      }
+    }
+    if (includes) {
+      add_checkmark_img();
+    } 
+    else {
+      add_vote_img();
+    }
+
     
   });
   
@@ -53,11 +90,44 @@ function vote (){
 
 
 function unvote() {
+  var request = new XMLHttpRequest();
+  request.open("get", "/posts/" + get_post_id() + "/unvote")
   
+  request.addEventListener("loadstart", function(){
+    var img = get_unvote_image();
+    get_content().removeChild(img);
+    
+  });
+  
+  request.addEventListener("load", function(){
+    var post = JSON.parse(this.response);
+    var includes = false;
+    for (i=0; i < post.users.length; i++) {
+      if (post.users[i].id == get_session_id()){
+        includes = true;
+      }
+    }
+    if (includes) {
+      add_checkmark_img();
+    } 
+    else {
+     add_vote_img(); 
+    }
+    
+    
+  });
+  request.send();
 }
 
 
 window.onload = function(){
-  document.getElementById("vote").addEventListener("click", vote)
-  document.getElementById("unvote").addEventListener("click", unvote)
+  alert("yes");
+  var v = document.getElementById("vote");
+  var u = document.getElementById("unvote")
+  if (v != null){
+    v.addEventListener("click", vote);
+  }
+  if (u != null){
+    u.addEventListener("click", unvote);
+  }
 }

@@ -4,9 +4,9 @@
  <h5 class="vote__text"><%= "#{@post.num_votes} #{@post.num_votes == 1 ? "vote" : "votes"}" %></h5>
  <% if @post.can_vote?(session[:id]) %>
    <% if @post.has_voted?(session[:id]) %>
-     <img class="vote__icon" id="vote" src="http://www.entypo.com/images/check.svg" title="click to unvote" alt="voted">
+     <img class="vote__icon" id="unvote" src="http://www.entypo.com/images/check.svg" title="click to unvote" alt="voted">
   <% else %>
-     <img class="vote__icon" id="unvote" src="http://www.entypo.com/images/thumbs-up.svg" title=" click to vote" alt="thumbs-up">
+     <img class="vote__icon" id="vote" src="http://www.entypo.com/images/thumbs-up.svg" title=" click to vote" alt="thumbs-up">
   <% end %>
   
  <% end %>

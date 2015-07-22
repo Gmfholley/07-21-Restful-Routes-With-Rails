@@ -76,9 +76,22 @@ class PostsController < ApplicationController
     @post = Post.find(params["id"])
   end
   
-    #
-  # get "/users/:user_id/stories/:id" do
-
-  # end
+  def vote
+    current_user
+    @post = Post.find(params["id"])
+    if @post.can_vote?(@user.id) && !@post.has_voted?(@user.id)
+      @post.users << @user
+    end
+    render :json => @post, :include => users
+  end
+  
+  def unvote
+    current_user
+    @post = Post.find(params["id"])
+    if @post.can_vote?(@user.id) && @post.has_voted?(@user.id)
+      @post.users.delete(@user)
+    end
+    render :json => @post.to_json(:include => :users)
+  end
   
 end

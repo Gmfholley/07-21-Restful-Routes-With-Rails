@@ -77,4 +77,9 @@ Rails.application.routes.draw do
   get "/edit_post/:id" => 'posts#edit_post_form'
   put "/edit_post/:id" => 'posts#edit_post'
   get "/users/:user_id/posts/:id" => 'posts#post'
+  
+  
+  # Routes for votes
+  get "/posts/:id/vote" => 'posts#vote'
+  get "/posts/:id/unvote" => 'posts#unvote'
 end
