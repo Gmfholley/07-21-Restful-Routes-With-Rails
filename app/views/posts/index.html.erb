@@ -11,13 +11,13 @@
     <% if @user.id == session[:id] %>
       <a href="/delete_post/<%= story.id%>" data-method="delete" data-confirm="Are you sure you want to delete this post?">Delete</a>  <a href="/edit_post/<%= story.id%>">Edit</a> 
     <% else %>
-      <div id="content">
+      <div class="content">
       <span class="vote__text"><%= "#{story.num_votes} #{story.num_votes == 1 ? "vote" : "votes"}" %></span>
       <% if story.can_vote?(session[:id]) %>
         <% if story.has_voted?(session[:id]) %>
-          <img class="vote__icon" id="unvote" src="http://www.entypo.com/images/check.svg" title="click to unvote" alt="voted">
+          <img class="vote__icon unvote" src="http://www.entypo.com/images/check.svg" title="click to unvote" alt="voted">
         <% else %>
-          <img class="vote__icon" id="vote" src="http://www.entypo.com/images/thumbs-up.svg" title=" click to vote" alt="thumbs-up">
+          <img class="vote__icon vote" src="http://www.entypo.com/images/thumbs-up.svg" title=" click to vote" alt="thumbs-up">
         <% end %>
       <% end %>
       </div>
