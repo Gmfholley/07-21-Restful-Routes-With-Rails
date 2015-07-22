@@ -72,8 +72,8 @@ class PostsController < ApplicationController
   end
   
   def post
-    @user = User.find(params["user_id"])
     @post = Post.find(params["id"])
+    @user = User.find(@post.user_id)
   end
   
   def vote

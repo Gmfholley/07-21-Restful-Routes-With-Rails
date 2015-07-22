@@ -76,7 +76,7 @@ Rails.application.routes.draw do
   delete "/delete_post/:id" => 'posts#delete_post'
   get "/edit_post/:id" => 'posts#edit_post_form'
   put "/edit_post/:id" => 'posts#edit_post'
-  get "/users/:user_id/posts/:id" => 'posts#post'
+  get "/posts/:id" => 'posts#post'
   
   
   # Routes for votes
