@@ -1,5 +1,7 @@
 <h2>Post: <%= @post.name %>!</h2>
 
+<img class="vote__icon" id="vote" src="http://www.entypo.com/images/thumbs-up.svg" alt="thumbs-up"><h5 class="vote__text"><%= "#{@post.num_votes} #{@post.num_votes == 1 ? "vote" : "votes"}" %></h5>
+
 <% if session[:id] == @post.user_id %>
   <p>This is your story.</p>
 <% else %>
