@@ -149,9 +149,8 @@ function unvote() {
   request.send();
 }
 
-
-window.onload = function(){
-  alert("yes");
+function my_onload_function (){
+  alert("loaded");
   var v = document.getElementById("vote");
   var u = document.getElementById("unvote")
   if (v != null){
@@ -161,3 +160,6 @@ window.onload = function(){
     u.addEventListener("click", unvote);
   }
 }
+
+window.addEventListener("load", my_onload_function, false); 
+
