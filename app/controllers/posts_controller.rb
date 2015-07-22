@@ -82,7 +82,7 @@ class PostsController < ApplicationController
     if @post.can_vote?(@user.id) && !@post.has_voted?(@user.id)
       @post.users << @user
     end
-    render :json => @post, :include => users
+    render :json => @post.to_json(:include => :users)
   end
   
   def unvote
