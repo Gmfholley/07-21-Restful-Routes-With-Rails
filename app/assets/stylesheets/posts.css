@@ -2,3 +2,25 @@
   Place all the styles related to the matching controller here.
   They will automatically be included in application.css.
 */
+
+.vote__icon {
+  display: inline;
+  vertical-align: middle;
+  margin: 2px;
+  width: 15px;
+  background: #b4b4b4;
+  
+  
+  vertical-align: center;
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: "FlipH";
+}
+
+.vote__text {
+  display: inline;
+  margin: 2px;
+}
