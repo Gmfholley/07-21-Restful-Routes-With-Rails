@@ -25,7 +25,6 @@ class User < ActiveRecord::Base
     return errors.messages.empty?
   end
   
-  
   # returns an Array of Posts, which belong to this user
   #
   # returns an Array of Posts
