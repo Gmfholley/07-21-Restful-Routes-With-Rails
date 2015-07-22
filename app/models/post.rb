@@ -11,7 +11,7 @@ class Post < ActiveRecord::Base
   #
   # returns a Boolean
   def can_vote?(users_id)
-    !(users_id == self.user_id)
+    (users_id != self.user_id && !users_id.blank?)
   end
   
   # returns a Boolean indicating if this user has voted

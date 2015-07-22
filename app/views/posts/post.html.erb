@@ -1,13 +1,24 @@
-<h2>Post: <%= @post.name %>!</h2>
+<div id="content" data-id="<%= @post.id %>" data-user-id="<%= @post.user_id %>" data-session-id="<%= session[:id] %>">
+  <h2>Post: <%= @post.name %>!</h2>
 
-<img class="vote__icon" id="vote" src="http://www.entypo.com/images/thumbs-up.svg" alt="thumbs-up"><h5 class="vote__text"><%= "#{@post.num_votes} #{@post.num_votes == 1 ? "vote" : "votes"}" %></h5>
+ <h5 class="vote__text"><%= "#{@post.num_votes} #{@post.num_votes == 1 ? "vote" : "votes"}" %></h5>
+ <% if @post.can_vote?(session[:id]) %>
+   <% if @post.has_voted?(session[:id]) %>
+     <img class="vote__icon" id="vote" src="http://www.entypo.com/images/check.svg" title="click to unvote" alt="voted">
+  <% else %>
+     <img class="vote__icon" id="unvote" src="http://www.entypo.com/images/thumbs-up.svg" title=" click to vote" alt="thumbs-up">
+  <% end %>
+  
+ <% end %>
 
-<% if session[:id] == @post.user_id %>
-  <p>This is your story.</p>
-<% else %>
-  <p>This story belongs to <%= User.find(@post.user_id).email %>.</p>
-<% end %>
+  <% if session[:id] == @post.user_id %>
+    <p>This is your story.</p>
+  <% else %>
+    <p>This story belongs to <%= User.find(@post.user_id).email %>.</p>
+  <% end %>
 
-<p>We plan to have more for you later.</p>
+  <p>We plan to have more for you later.</p>
 
-<a href="/<%= "/users/#{@post.user_id}/posts" %>">All Posts</a>
+  <a href="/<%= "/users/#{@post.user_id}/posts" %>">All Posts</a>
+
+</div>
